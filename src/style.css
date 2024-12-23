@@ -124,15 +124,12 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: transparent;
   color: white;
-<<<<<<< HEAD
   cursor: pointer;
   transition: 0.2s;
 }
 
 #saveButton:hover {
   background: rgba(255, 255, 255, 0.1);
-=======
->>>>>>> 09f157f04db19a99a8b607e31001f40909d77d27
 }
 
 #format option {
@@ -147,24 +144,32 @@ body {
 }
 
 .tab-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
+  margin-top: 8px;
 }
 
 .tab-button {
-  flex: 1;
-  padding: 10px 18px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgb(17, 24, 39);
+  border: none;
+  color: rgb(229, 231, 235);
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.5s ease-in;
+  transition: background-color 0.2s ease;
+}
+
+.tab-button:hover {
+  background: rgb(31, 41, 55);
 }
 
 .tab-button.active {
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background: rgb(31, 41, 55);
 }
 
 .tab-content {
@@ -182,13 +187,13 @@ body {
 
 
 #fontSelect {
-  padding: 10px 18px;
-  border: none;
-  margin-top: 12px;
-  border-radius: 5px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.249);
-  color: white;
+  width: 100%;
+  padding: 12px 16px;
+  background: rgb(17, 24, 39);
+  border: 1px solid rgb(55, 65, 81);
+  border-radius: 12px;
+  color: rgb(229, 231, 235);
+  margin-bottom: 5px;
 }
 
 #fontSelect option,

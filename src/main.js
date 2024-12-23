@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 //signature preview
-=======
->>>>>>> 09f157f04db19a99a8b607e31001f40909d77d27
 const textField = document.getElementById('textField');
 const signaturePrev = document.querySelector('.signature-prev');
 
@@ -16,7 +13,6 @@ textField.addEventListener('input', (event) => {
     signaturePrev.classList.remove('active');
     signaturePrev.textContent = '';
   }
-<<<<<<< HEAD
 })
 
 //export and preview tabs
@@ -36,6 +32,3 @@ tabButtons.forEach(button => {
     document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
   })
 });
-=======
-})
->>>>>>> 09f157f04db19a99a8b607e31001f40909d77d27

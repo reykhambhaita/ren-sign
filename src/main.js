@@ -32,3 +32,25 @@ tabButtons.forEach(button => {
     document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
   })
 });
+
+
+
+//font styles for signature
+const fontSelector = document.getElementById('fontSelect');
+
+function updateFont() {
+  const signature = textField.value.trim();
+  const selectedFont = fontSelector.value;
+
+  if (signature) {
+    signaturePrev.classList.add('active');
+    signaturePrev.textContent = signature;
+    signaturePrev.style.fontFamily = selectedFont;
+  } else {
+    signaturePrev.classList.remove('active');
+    signaturePrev.textContent = '';
+  }
+}
+
+textField.addEventListener('input', updateFont);
+fontSelector.addEventListener('change', updateFont);

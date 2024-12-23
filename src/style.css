@@ -104,6 +104,7 @@ body {
   font-size: 18px;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 #format {
@@ -113,6 +114,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: transparent;
   color: white;
+  cursor: pointer;
 }
 
 #saveButton {
@@ -122,9 +124,72 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: transparent;
   color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#saveButton:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 #format option {
   background: rgba(0, 0, 0, 0.8);
 
+}
+
+.tabs {
+  width: 80%;
+  max-width: 300px;
+  margin-top: 12px;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px 18px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease-in;
+}
+
+.tab-button.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.tab-content {
+  display: none;
+  padding: 10px;
+  background: rgb(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-top: 10px;
+  min-height: 0;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+
+#fontSelect {
+  padding: 10px 18px;
+  border: none;
+  margin-top: 12px;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.249);
+  color: white;
+}
+
+#fontSelect option,
+optgroup {
+  background-color: rgb(42, 42, 42);
+  color: white;
 }

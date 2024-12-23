@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
-   
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/style.css">
     <title>Vite App</title>
   </head>
+
   <body>
 
     <div class="modal">
@@ -16,42 +18,68 @@
           <button id="signButton">
             <svg width="12px" height="12px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
               stroke="#ffffff">
-    
               <g id="SVGRepo_bgCarrier" stroke-width="0" />
-    
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-    
               <g id="SVGRepo_iconCarrier">
                 <path
                   d="M11 0L16 5L14 7V12L3 16L2.20711 15.2071L6.48196 10.9323C6.64718 10.9764 6.82084 11 7 11C8.10457 11 9 10.1046 9 9C9 7.89543 8.10457 7 7 7C5.89543 7 5 7.89543 5 9C5 9.17916 5.02356 9.35282 5.06774 9.51804L0.792893 13.7929L0 13L4 2H9L11 0Z"
                   fill="#ffffff" />
               </g>
-    
             </svg>Sign
           </button>
         </div>
-    
+
         <div class="signed-by">
           <!--append sign name here-->
         </div>
-    
+
+        <div class="font-selector">
+          <select id="fontSelect">
+            <optgroup label="Signature Styles">
+              <option value="'Dancing Script', cursive">Dancing Script</option>
+              <option value="'Great Vibes', cursive">Great Vibes</option>
+              <option value="'Pacifico', cursive">Pacifico</option>
+              <option value="'Alex Brush', cursive">Alex Brush</option>
+              <option value="'Yellowtail', cursive">Yellowtail</option>
+              <option value="'Mr De Haviland', cursive">Mr De Haviland</option>
+              <option value="'Pinyon Script', cursive">Pinyon Script</option>
+              <option value="'Allura', cursive">Allura</option>
+              <option value="'Tangerine', cursive">Tangerine</option>
+              <option value="'Rochester', cursive">Rochester</option>
+              <option value="'Splash', cursive">Splash</option>
+              <option value="'Satisfy', cursive">Satisfy</option>
+            </optgroup>
+          </select>
+        </div>
+
         <div class="signature-prev">
           <!--preview of the signature-->
         </div>
-    
-        <div class="export-options">
-          <label for="format">Save as:</label>
-          <select id="format">
-            <option value="png">PNG</option>
-            <option value="jpeg">JPEG</option>
-            <option value="svg">SVG</option>
-            <option value="avif">AVIF</option>
-          </select>
-          <button id="saveButton">Save</button>
+
+        <div class="tabs">
+          <div class="tab-buttons">
+            <button class="tab-button active" data-tab="preview">Preview</button>
+            <button class="tab-button" data-tab="export">Export</button>
+          </div>
+
+
+        </div>
+        <div class="tab-content" data-tab="export">
+          <div class="export-options">
+            <label for="format">Save as:</label>
+            <select id="format">
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+              <option value="svg">SVG</option>
+              <option value="avif">AVIF</option>
+            </select>
+            <button id="saveButton">Save</button>
+          </div>
         </div>
       </div>
     </div>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
+
 </html>

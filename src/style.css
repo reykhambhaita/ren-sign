@@ -124,12 +124,15 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: transparent;
   color: white;
+<<<<<<< HEAD
   cursor: pointer;
   transition: 0.2s;
 }
 
 #saveButton:hover {
   background: rgba(255, 255, 255, 0.1);
+=======
+>>>>>>> 09f157f04db19a99a8b607e31001f40909d77d27
 }
 
 #format option {

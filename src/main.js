@@ -1,71 +1,22 @@
-//signature preview
 const textField = document.getElementById('textField');
 const signaturePrev = document.querySelector('.signature-prev');
-
-textField.addEventListener('input', (event) => {
-  const value = event.target.value.trim();
-  if (value) {
-    signaturePrev.classList.add('active');
-    signaturePrev.textContent = value;
-
-  }
-  else {
-    signaturePrev.classList.remove('active');
-    signaturePrev.textContent = '';
-  }
-})
-
-//export and preview tabs
-
-const tabButtons = document.querySelectorAll('.tab-button');
-const tabContents = document.querySelectorAll('.tab-content');
-
-tabButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const tabName = button.getAttribute('data-tab');
-
-
-    tabButtons.forEach(btn => btn.classList.remove('active'));
-    tabContents.forEach(content => content.classList.remove('active'));
-
-    button.classList.add('active');
-    document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
-  })
-});
-
-
-
-//font styles for signature
 const fontSelect = document.getElementById('fontSelect');
-
-function updateFont() {
-  const signature = textField.value.trim();
-  const selectedFont = fontSelect.value;
-
-  if (signature) {
-    signaturePrev.classList.add('active');
-    signaturePrev.textContent = signature;
-    signaturePrev.style.fontFamily = selectedFont;
-  } else {
-    signaturePrev.classList.remove('active');
-    signaturePrev.textContent = '';
-  }
-}
-
-textField.addEventListener('input', updateFont);
-fontSelect.addEventListener('change', updateFont);
-
-
-//export as files
-const saveButton = document.getElementById('saveButton');
 const formatSelect = document.getElementById('format');
+const signButton = document.getElementById('signButton');
 
-saveButton.addEventListener('click', () => {
+//signature preview
+textField.addEventListener('input', updateSignature);
+
+// Select font from fontSelect
+fontSelect.addEventListener('change', updateSignature);
+
+// Sign button functionality
+signButton.addEventListener('click', () => {
   const format = formatSelect.value;
   const signatureContent = signaturePrev;
 
   if (!signatureContent || !signatureContent.textContent.trim()) {
-    alert('Please generate a signature before saving.');
+    alert('Please enter text for your signature.');
     return;
   }
 
@@ -76,42 +27,44 @@ saveButton.addEventListener('click', () => {
   }
 });
 
+
+//render font for signature
+function updateSignature() {
+  const value = textField.value.trim();
+  const selectedFont = fontSelect.value;
+
+  if (value) {
+    signaturePrev.classList.add('active');
+    signaturePrev.textContent = value;
+    signaturePrev.style.fontFamily = selectedFont;
+  } else {
+    signaturePrev.classList.remove('active');
+    signaturePrev.textContent = '';
+  }
+}
+//save file when clicked on signButton
 function saveAsSVG(signatureContent) {
+  const computedStyle = window.getComputedStyle(signatureContent);
+  const fontFamily = computedStyle.fontFamily.split(',')[0].trim().replace(/"/g, '');
+  const fontSize = parseFloat(computedStyle.fontSize);
   const signatureText = signatureContent.textContent
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
-  const computedStyle = window.getComputedStyle(signatureContent);
-
-  const fontFamily = computedStyle.fontFamily.replace(/"/g, "'"); 
-  const fontSize = computedStyle.fontSize;
-  const textAlign = computedStyle.textAlign;
-  const fillColor = computedStyle.color | "black";
-
   const width = signatureContent.offsetWidth || 500;
   const height = signatureContent.offsetHeight || 200;
 
-  const svgContent = `
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${width}" height="${height}">
-      <rect width="100%" height="100%" fill="white" />
-      <text x="${textAlign === 'center' ? '50%' : '10%'}" y="50%" 
-            dominant-baseline="middle" text-anchor="${textAlign === 'center' ? 'middle' : 'start'}"
-            font-family="${fontFamily}" font-size="${fontSize}" fill="${fillColor}">
-        ${signatureText}
-      </text>
-    </svg>
-  `;
+  const svgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><defs><style type="text/css">text {font-family: ${fontFamily}, cursive, serif;font-size: ${fontSize}px;fill: black;}</style></defs><rect width="100%" height="100%" fill="white"/><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">${signatureText}</text></svg>`;
 
   const blob = new Blob([svgContent], { type: "image/svg+xml;charset=utf-8" });
   saveBlob(blob, "signature.svg");
 }
 
-
 function saveAsImage(signatureContent, format) {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
 
-  canvas.width = 500;
+  canvas.width = 250;
   canvas.height = 200;
 
   context.fillStyle = 'white';
@@ -126,12 +79,13 @@ function saveAsImage(signatureContent, format) {
   context.textAlign = 'center';
   context.textBaseline = 'middle';
   context.fillText(signatureText, canvas.width / 2, canvas.height / 2);
+
   canvas.toBlob(
     (blob) => {
       if (blob) {
         saveBlob(blob, `signature.${format}`);
       } else {
-        alert('Failed.');
+        alert('Failed to save the file.');
       }
     },
     `image/${format}`
@@ -145,4 +99,5 @@ function saveBlob(blob, fileName) {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
 }

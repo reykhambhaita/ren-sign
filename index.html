@@ -14,7 +14,6 @@
   </head>
 
   <body>
-
     <div class="modal">
       <div class="wrapper">
         <div class="input-button">
@@ -32,57 +31,42 @@
             </svg>Sign
           </button>
         </div>
-
-        <div class="signed-by">
-          <!--append sign name here-->
-        </div>
-
-        <div class="font-selector">
-          <select id="fontSelect">
-            <optgroup label="Signature Styles">
-              <option value="'Dancing Script', cursive">Dancing Script</option>
-              <option value="'Great Vibes', cursive">Great Vibes</option>
-              <option value="'Pacifico', cursive">Pacifico</option>
-              <option value="'Alex Brush', cursive">Alex Brush</option>
-              <option value="'Yellowtail', cursive">Yellowtail</option>
-              <option value="'Mr De Haviland', cursive">Mr De Haviland</option>
-              <option value="'Pinyon Script', cursive">Pinyon Script</option>
-              <option value="'Allura', cursive">Allura</option>
-              <option value="'Tangerine', cursive">Tangerine</option>
-              <option value="'Rochester', cursive">Rochester</option>
-              <option value="'Splash', cursive">Splash</option>
-              <option value="'Satisfy', cursive">Satisfy</option>
-            </optgroup>
-          </select>
-        </div>
-
         <div class="signature-prev">
           <!--preview of the signature-->
         </div>
-
-        <div class="tabs">
-          <div class="tab-buttons">
-            <button class="tab-button active" data-tab="preview">Preview</button>
-            <button class="tab-button" data-tab="export">Export</button>
+        <div class="controls-row">
+          <div class="font-selector">
+            <select id="fontSelect">
+              <optgroup label="Signature Styles">
+                <option value="'Dancing Script', cursive">Dancing Script</option>
+                <option value="'Great Vibes', cursive">Great Vibes</option>
+                <option value="'Pacifico', cursive">Pacifico</option>
+                <option value="'Alex Brush', cursive">Alex Brush</option>
+                <option value="'Yellowtail', cursive">Yellowtail</option>
+                <option value="'Mr De Haviland', cursive">Mr De Haviland</option>
+                <option value="'Pinyon Script', cursive">Pinyon Script</option>
+                <option value="'Allura', cursive">Allura</option>
+                <option value="'Tangerine', cursive">Tangerine</option>
+                <option value="'Rochester', cursive">Rochester</option>
+                <option value="'Splash', cursive">Splash</option>
+                <option value="'Satisfy', cursive">Satisfy</option>
+              </optgroup>
+            </select>
           </div>
 
-
-        </div>
-        <div class="tab-content" data-tab="export">
-          <div class="export-options">
-            <label for="format">Save as:</label>
+          <div class="format-selector">
             <select id="format">
               <option value="png">PNG</option>
               <option value="jpeg">JPEG</option>
               <option value="svg">SVG</option>
               <option value="avif">AVIF</option>
             </select>
-            <button id="saveButton">Save</button>
           </div>
         </div>
+
+
       </div>
     </div>
-    <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
 
